@@ -24,4 +24,7 @@ then select the one that occurred the most number of times (you can also include
 
 After determining Measured Power values for each wifi beacon, make a map of your room or wherever you are doing this experiment and upload it to a web-site. In my case I posted it on Facebook. You are going to need the link to this image later on.
 
-
+Then upload 'indoor-navigation-wifi-esp32' to your ESP32. run it.
+in this project we will use a webpage to display your room's map and then display your location in the map with a red pointer.
+Open '192.168.43.243' on the chrome browser of your phone. Also put an auto-refresh extension on your browser.
+With each refresh the position will be updated.
