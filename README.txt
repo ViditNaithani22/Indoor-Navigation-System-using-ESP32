@@ -13,7 +13,7 @@ the signal RSSI strength will be around -26 (a few inches) to -100 (40–50 m di
 N => Constant depends on the Environmental factor. Range 2–4, low to-high strength. If disturbence in RSSI is low (getting similar RSSI values at a given position) then use 2. If disturbence in RSSI is high (getting completely different RSSI values at a given position) use 4. Otherwise calculate your own N. the meathod is given here - https://journals.sagepub.com/doi/full/10.1155/2014/371350
 
 
-Take three wifi beacons and place each one on a different wall of your room.
+Take three wifi beacons and place each one on a different wall of your room. you can take 3 mobile phones with their hotspot on but with no password. 
 
 Determine Measured Power of a wifi beacon =>
 Use 'print-wifi-rssi' -> to print the RSSI of a wifi beacon. 
