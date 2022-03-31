@@ -59,6 +59,128 @@ String randomValueTop(){
 }
 
 
+const char index_html[] PROGMEM = R"rawliteral(
+<!DOCTYPE HTML><html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <style>
+    html {
+     
+     height: 100%;
+     width: 100%;
+    }
+    body{
+     background-image: url("https://scontent.fjdh1-1.fna.fbcdn.net/v/t1.0-9/s1080x2048/129457802_1170410460020596_2034273539076149489_o.jpg?_nc_cat=104&ccb=2&_nc_sid=730e14&_nc_ohc=0_OMGegaHUYAX8j_8NH&_nc_ht=scontent.fjdh1-1.fna&tp=7&oh=8a0f69a195d5a8a9e321665cd3c114a2&oe=5FF28F5D");
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+    }
+
+   
+    #myPosition{
+   height: 20px;
+   width: 20px;
+   position: relative;
+   top: 180px;
+   left: 475px;
+   }
+
+  </style>
+</head>
+<body>
+  
+  <div>
+   <img src="https://library.kissclipart.com/20180901/hke/kissclipart-live-dot-clipart-wemindji-quebec-mcr-live-busines-577d13813f13fc2e.jpg" id="myPosition">
+   </div>
+   
+
+  
+</body>
+<script>
+  window.onload = (event) => {
+  var xhttpl = new XMLHttpRequest();
+  var xhttpt = new XMLHttpRequest();
+  xhttpl.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     
+     if (parseInt(this.responseText) < -475) {
+      document.querySelector("#myPosition").style.left = 0 + "px";
+     } 
+     else if (parseInt(this.responseText) >= -475 && parseInt(this.responseText) <= 475) {
+      document.querySelector("#myPosition").style.left = 475 + parseInt(this.responseText) + "px";
+     } 
+     else if (parseInt(this.responseText) > 475) {
+      document.querySelector("#myPosition").style.left = 950 + "px";
+     }
+   
+    }
+  };
+  xhttpt.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     
+     if (parseInt(this.responseText) < -180) {
+       document.querySelector("#myPosition").style.top = 360 + "px";
+      } 
+     else if (parseInt(this.responseText) >= -180 && parseInt(this.responseText) <= 180) {
+      document.querySelector("#myPosition").style.top = 180 - parseInt(this.responseText) + "px";
+      } 
+     else if (parseInt(this.responseText) > 180) {
+      document.querySelector("#myPosition").style.top = 0 + "px";
+      }
+   
+   
+    }
+  };
+  xhttpl.open("GET", "/x", true);
+  xhttpl.send();
+  xhttpt.open("GET", "/y", true);
+  xhttpt.send();
+};
+</script>
+</html>)rawliteral";
+
+
+
+
+void setup(){
+  // Serial port for debugging purposes
+  Serial.begin(115200);
+
+// Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) { 
+    delay(1000);
+    Serial.println("Connecting to WiFi..");
+  }
+
+  // Print ESP32 Local IP Address
+  Serial.println(WiFi.localIP());
+
+  // Route for root / web page
+  
+    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send_P(200, "text/html", index_html);
+  });
+  server.on("/x", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send_P(200, "text/plain", randomValueLeft().c_str());
+  });
+  server.on("/y", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send_P(200, "text/plain", randomValueTop().c_str());
+  });
+
+  server.begin();
+
+  
+
+
+  
+}
+
+void loop() {
+  
+}
+
 
 
 
