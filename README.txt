@@ -35,5 +35,20 @@ the code in 'indoor-navigation-wifi-esp32' is explained using comments in the sa
 
 
 
-Trilateration =>
+Trilateration => https://math.stackexchange.com/questions/884807/find-x-location-using-3-known-x-y-location-using-trilateration
+
+Read about trilateration on this webpage. we will use this algorithem in our code to determine our location
+
+REMEMBER:  FOR THIS PROJECT, WE REQUIRE ALL THREE WIFI BEACONS AND OUR ESP 32 MODULE TO BE ON THE SAME HEIGHT AT ALL TIMES. 
+So you can place your ESP 32 module on top of an office wheelchair and then place all the other three wifi beacons at the same height. 
+We need to do this because we are using a 2D trilateration method and not a 3D one.
+for 3D trilateration read=> https://thesai.org/Downloads/Volume11No2/Paper_50-3D_Trilateration_Localization.pdf
+
+
+
+
+
+
+
+
 
