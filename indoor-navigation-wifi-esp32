@@ -1,0 +1,96 @@
+#include <WiFi.h>
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+
+
+float xA=-195,yA=-25,xB=60,yB=-90,xC=305,yC=35,dA,dB,dC,rA,rB,rC,x,y,A,B,C,D,E,F,rssiA,rssiB,rssiC;
+
+
+const char* ssid = "My mobile";
+const char* password = "kronos1998";
+
+AsyncWebServer server(80);
+
+String randomValueLeft(){
+ int n = WiFi.scanNetworks();
+ if (n == 0) {
+    Serial.println("no networks found");
+  } 
+ else {
+    for (int i = 0; i < n; ++i) {
+      
+      if(String(WiFi.SSID(i)) == "wifi 1"){
+        rssiA = WiFi.RSSI(i) ;
+        dA = pow(10,(((-1*rssiA)-45)/4));
+        rA = dA*50;
+       }
+       
+      else if(String(WiFi.SSID(i)) == "wifi 2"){
+       
+            rssiB = WiFi.RSSI(i) ;
+            dB = pow(10,(((-1*rssiB)-48)/4));
+            rB = dB*50;
+      }
+       
+      else if(String(WiFi.SSID(i)) == "wifi 3"){
+          rssiC = WiFi.RSSI(i) ;
+          dC = pow(10,(((-1*rssiC)-42)/4));
+          rC = dC*50;
+      }
+    }
+    
+     C = pow(rA,2)-pow(rB,2)-pow(xA,2)+pow(xB,2)-pow(yA,2)+pow(yB,2);
+     E = -2*yB+2*yC;
+     F = pow(rB,2)-pow(rC,2)-pow(xB,2)+pow(xC,2)-pow(yB,2)+pow(yC,2);
+     B = -2*yA+2*yB;
+     A = -2*xA+2*xB;
+     D = -2*xB+2*xC;
+
+     x = (C*E-F*B)/(E*A-B*D);
+     y = (C*D-A*F)/(B*D-A*E);
+     
+     return String(x);
+     
+ }
+}
+
+String randomValueTop(){
+   return String(y);
+}
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
