@@ -13,8 +13,15 @@ the signal RSSI strength will be around -26 (a few inches) to -100 (40–50 m di
 N => Constant depends on the Environmental factor. Range 2–4, low to-high strength. If disturbence in RSSI is low (getting similar RSSI values at a given position) then use 2. If disturbence in RSSI is high (getting completely different RSSI values at a given position) use 4. Otherwise calculate your own N. the meathod is given here - https://journals.sagepub.com/doi/full/10.1155/2014/371350
 
 
-Determine Measured Power of your wifi beacon =>
+Take three wifi beacons and place each one on a different wall of your room.
+
+Determine Measured Power of a wifi beacon =>
 Use 'print-wifi-rssi' -> to print the RSSI of a wifi beacon. 
 put your ESP32 one meter away from the beacon.
 take note of 10-15  RSSI values.
 then select the one that occurred the most number of times (you can also include those values which are closer to the mostly occurring RSSI value and then take an average of all of them)
+
+
+After determining Measured Power values for each wifi beacon, make a map of your room or wherever you are doing this experiment and upload it to a web-site. In my case I posted it on Facebook. You are going to need the link to this image later on.
+
+
